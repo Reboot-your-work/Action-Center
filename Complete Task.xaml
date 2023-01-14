@@ -66,22 +66,21 @@
       <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Complete_Task" sap:VirtualizedContainerService.HintSize="1186.4,2264.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="Amount" />
       <Variable x:TypeArguments="upaf:FormTaskData" Name="Task_Object" />
-      <Variable x:TypeArguments="scg:List(upat:TaskUserAssignment)" Name="Taskuserassignment">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="scg:List(upat:TaskUserAssignment)" ExpressionText="new list(of TaskUserAssignment)" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="scg:List(upat:TaskAssignmentResponse)" Name="FailedTaskAssignment">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="scg:List(upat:TaskAssignmentResponse)" ExpressionText="new list(of TaskAssignmentResponse)" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(upat:TaskUserAssignment)" Default="[new list(of TaskUserAssignment)]" Name="Taskuserassignment" />
+      <Variable x:TypeArguments="scg:List(upat:TaskAssignmentResponse)" Default="[new list(of TaskAssignmentResponse)]" Name="FailedTaskAssignment" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -95,9 +94,7 @@
     </ui:InputDialog>
     <upaf:CreateFormTask BucketFolderPath="{x:Null}" BucketName="{x:Null}" BulkFormLayout="{x:Null}" DynamicFormPath="{x:Null}" ExternalTag="{x:Null}" Labels="{x:Null}" TimeoutMs="{x:Null}" BulkFormLayoutGuid="30b0a1c5-7765-42a8-83c9-d97c3e6e4e32" DisplayName="Create Form Task" EnableBulkEdit="False" EnableDynamicForms="False" FormLayout="%[{&quot;label&quot;:&quot;HRA Amount&quot;,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;delimiter&quot;:false,&quot;requireDecimal&quot;:false,&quot;key&quot;:&quot;in_Amount&quot;,&quot;type&quot;:&quot;number&quot;,&quot;input&quot;:true},{&quot;mask&quot;:false,&quot;customClass&quot;:&quot;uipath-button-container&quot;,&quot;tableView&quot;:true,&quot;alwaysEnabled&quot;:false,&quot;type&quot;:&quot;table&quot;,&quot;input&quot;:false,&quot;key&quot;:&quot;key&quot;,&quot;label&quot;:&quot;label&quot;,&quot;rows&quot;:[[{&quot;components&quot;:[{&quot;label&quot;:&quot;Approve&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;approve&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;isResetData&quot;:false}]},{&quot;components&quot;:[{&quot;label&quot;:&quot;Reject&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;reject&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;,&quot;isResetData&quot;:false}]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]},{&quot;components&quot;:[]}]],&quot;numRows&quot;:1,&quot;numCols&quot;:6,&quot;reorder&quot;:false}]" FormLayoutGuid="092063d8-f050-412d-bdaf-b62038e77142" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="1144.8,372.8" sap2010:WorkflowViewState.IdRef="CreateFormTask_1" TaskCatalog="[&quot;HRA Approval&quot;]" TaskOutput="[Task_Object]" TaskPriority="[TaskPriority.Medium]" TaskTitle="HRA Approval Form">
       <upaf:CreateFormTask.FormData>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_Amount">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Amount" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_Amount">[Amount]</InArgument>
       </upaf:CreateFormTask.FormData>
     </upaf:CreateFormTask>
     <AddToCollection x:TypeArguments="upat:TaskUserAssignment" Collection="[Taskuserassignment]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="1144.8,22.4" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[new TaskUserAssignment(Task_Object.Id,&quot;jayavignesh1608@gmail.com&quot;)]" />
